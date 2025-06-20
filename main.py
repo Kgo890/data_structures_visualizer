@@ -188,8 +188,16 @@ class BinaryTree:
                     else:
                         current = current.right
 
-    def search(self):
-        pass
+    def search(self, value):
+        current = self.root
+        while current is not None:
+            if current.value == value:
+                return True
+            elif current.value < value:
+                current = current.left
+            else:
+                current = current.right
+        return False
 
     def in_order_traverse(self):
         nums = []
@@ -232,7 +240,19 @@ class BinaryTree:
         return nums
 
     def height(self):
-        pass
+        current = self.root
+        if current is None:
+            return 0
+
+        def helper(tree_node):
+            if tree_node is None:
+                return 0
+            left_height = helper(tree_node.left)
+            right_height = helper(tree_node.right)
+
+            return 1 + max(left_height, right_height)
+
+        return helper(current)
 
     def delete(self):
         pass
