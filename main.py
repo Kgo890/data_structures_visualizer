@@ -259,6 +259,8 @@ class BinaryTree:
         current = self.root
         while current is not None:
             if current.value == value:
+
+                # leaf node deletion
                 if current.left is None and current.right is None:
                     if current == self.root:
                         self.root = None
@@ -271,11 +273,44 @@ class BinaryTree:
                     if parent.right == current:
                         parent.right = None
                         break
+
+                # one child cases (right or left)
                 elif current.left is None:
                     if current == self.root:
+                        self.root = current.right
+                        break
+                    else:
+                        if current == parent.left:
+                            parent.left = current.right
+                            break
+                        elif current == parent.right:
+                            parent.right = current.right
+                            break
 
-                else:
-                    pass
+                elif current.right is None:
+                    if current == self.root:
+                        self.root = current.left
+                        break
+                    else:
+                        if current == parent.left:
+                            parent.left = current.left
+                            break
+                        elif current == parent.right:
+                            parent.right = current.left
+                            break
+                # two children
+                elif current.left is not None and current.right is not None:
+                    successor_parent = current
+                    successor = current.right
+
+                    while successor.left is not None:
+                        successor_parent = successor
+                        successor = successor.left
+                    current.value = successor.value
+                    if successor_parent.left == successor:
+                        successor_parent.left = successor.right
+                    else:
+                        successor_parent.right = successor.right
 
             elif value < current.value:
                 parent = current
