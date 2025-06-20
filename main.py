@@ -254,8 +254,39 @@ class BinaryTree:
 
         return helper(current)
 
-    def delete(self):
-        pass
+    def delete(self,value):
+        parent = self.root
+        current = self.root
+        while current is not None:
+            if current.value == value:
+                if current.left is None and current.right is None:
+                    if current == self.root:
+                        self.root = None
+                        break
+
+                    if parent.left == current:
+                        parent.left = None
+                        break
+
+                    if parent.right == current:
+                        parent.right = None
+                        break
+                elif current.left is None:
+                    if current == self.root:
+
+                else:
+                    pass
+
+            elif value < current.value:
+                parent = current
+                current = current.left
+            else:
+                parent = current
+                current = current.right
+
+
+
+
 
 
 def bubble_sort(nums):
