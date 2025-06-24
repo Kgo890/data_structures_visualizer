@@ -1,13 +1,16 @@
 def bubble_sort(nums):
+    steps = [nums[:]]
     n = len(nums)
     for i in range(n):
         for j in range(n - i - 1):
             if nums[j] > nums[j + 1]:
                 nums[j], nums[j + 1] = nums[j + 1], nums[j]
-    return nums
+                steps.append(nums[:])
+    return steps
 
 
 def selection_sort(nums):
+    steps = [nums[:]]
     n = len(nums)
     for i in range(0, n - 1):
         min_index = i
@@ -15,55 +18,68 @@ def selection_sort(nums):
             if nums[j] < nums[min_index]:
                 min_index = j
         nums[i], nums[min_index] = nums[min_index], nums[i]
-    return nums
+        steps.append(nums[:])
+    return steps
 
 
 def insertion_sort(nums):
+    steps = [nums[:]]
     n = len(nums)
     for i in range(1, n):
         current_index = i
         while current_index > 0 and nums[current_index - 1] > nums[current_index]:
             nums[current_index], nums[current_index - 1] = nums[current_index - 1], nums[current_index]
             current_index -= 1
-    return nums
+            steps.append(nums[:])
+    return steps
 
 
-def merge_sort(nums):
+def merge_sort(nums, steps=None):
+    if steps is None:
+        steps = [nums[:]]
+
     if len(nums) < 2:
         return nums
 
-    left = nums[:len(nums) // 2]
-    right = nums[len(nums) // 2:]
-    left_side = merge_sort(left)
-    right_side = merge_sort(right)
+    mid = len(nums) // 2
+    left = merge_sort(nums[:mid], steps)
+    right = merge_sort(nums[mid:], steps)
+
     final = []
     i = j = 0
-    while i < len(left_side) and j < len(right_side):
-        if left_side[i] <= right_side[j]:
-            final.append(left_side[i])
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            final.append(left[i])
             i += 1
         else:
-            final.append(right_side[j])
+            final.append(right[j])
             j += 1
-    final.extend(left_side[i:])
-    final.extend(right_side[j:])
-    return final
+    final.extend(left[i:])
+    final.extend(right[j:])
+
+    nums[:] = final
+    steps.append(nums[:])
+    return nums  # still return the sorted array
 
 
-def quick_sort(nums, low, high):
+def quick_sort(nums, low, high, steps=None):
+    if steps is None:
+        steps = [nums[:]]
     if low < high:
-        middle = partition(nums, low, high)
-        quick_sort(nums, low, middle - 1)
-        quick_sort(nums, middle + 1, high)
-    return nums
+        mid = partition(nums, low, high, steps)
+        quick_sort(nums, low, mid - 1, steps)
+        quick_sort(nums, mid + 1, high, steps)
+    return steps
 
 
-def partition(nums, low, high):
+def partition(nums, low, high, steps):
     pivot = nums[high]
     i = low - 1
     for j in range(low, high):
         if nums[j] < pivot:
             i += 1
             nums[i], nums[j] = nums[j], nums[i]
+            steps.append(nums[:])
     nums[i + 1], nums[high] = nums[high], nums[i + 1]
+    steps.append(nums[:])
     return i + 1

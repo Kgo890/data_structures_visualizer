@@ -1,5 +1,5 @@
 from pydantic import BaseModel
 
 
-class TreeItem(BaseModel):
+class BinaryTreeItem(BaseModel):
     value: int

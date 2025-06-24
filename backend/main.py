@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.routes import stack_routes,queue_routes,singly_linked_list_routes,sorting_routes,trees_routes
+from backend.routes import stack_routes,queue_routes,singly_linked_list_routes,sorting_routes,binary_tree_routes
 
 app = FastAPI(
     title="Data Structures Visualizer API",
