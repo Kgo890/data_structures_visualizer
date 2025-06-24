@@ -59,7 +59,7 @@ def merge_sort(nums, steps=None):
 
     nums[:] = final
     steps.append(nums[:])
-    return nums  # still return the sorted array
+    return nums  
 
 
 def quick_sort(nums, low, high, steps=None):

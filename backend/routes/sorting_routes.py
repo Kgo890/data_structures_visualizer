@@ -1,4 +1,4 @@
-from backend.models.sorting import selection_sort,insertion_sort,quick_sort,merge_sort,bubble_sort
+from backend.models.sorting import selection_sort, insertion_sort, quick_sort, merge_sort, bubble_sort
 from fastapi import APIRouter
 from backend.schemas.sorting_schema import SortItem
 
@@ -6,37 +6,29 @@ router = APIRouter(
     prefix="/sort",
     tags=["Sort"]
 )
-sorting = S
 
 
-@router.get("/bubble")
-async def bubble_s(item: SortItem):
-    singly_linked_list.insert_at_head(item.value)
-    return {'message': f'{item.value} was inserted at the head of the linked list',
-            'current': singly_linked_list.traverse()}
+@router.post("/")
+async def sorting_algorithm(item: SortItem):
+    if item.algorithm == "selection":
+        steps = selection_sort(item.value)
+        return {"original": item.value, "steps": steps}
 
+    elif item.algorithm == "insertion":
+        steps = insertion_sort(item.value)
+        return {"original": item.value, "steps": steps}
 
-@router.get("/quick")
-async def quick_s(item: SortItem):
-    singly_linked_list.insert_at_tail(item.value)
-    return {'message': f'{item.value} was inserted at the tail of the linked list',
-            'current': singly_linked_list.traverse()}
+    elif item.algorithm == "quick":
+        steps = quick_sort(item.value, 0, len(item.value) - 1)
+        return {"original": item.value, "steps": steps}
 
-@router.get("/merge")
-async def merge_s(item: SortItem):
-    singly_linked_list.insert_at_tail(item.value)
-    return {'message': f'{item.value} was inserted at the tail of the linked list',
-            'current': singly_linked_list.traverse()}
+    elif item.algorithm == "merge":
+        steps = merge_sort(item.value)
+        return {"original": item.value, "steps": steps}
 
-@router.get("/selection")
-async def selection_s(item: SortItem):
-    singly_linked_list.insert_at_tail(item.value)
-    return {'message': f'{item.value} was inserted at the tail of the linked list',
-            'current': singly_linked_list.traverse()}
+    elif item.algorithm == "bubble":
+        steps = bubble_sort(item.value)
+        return {"original": item.value, "steps": steps}
 
-@router.get("/insertion")
-async def insertion_s(item: SortItem):
-    singly_linked_list.insert_at_tail(item.value)
-    return {'message': f'{item.value} was inserted at the tail of the linked list',
-            'current': singly_linked_list.traverse()}
-
+    else:
+        return {'error': f'{item.algorithm} was not added to the program yet or not found'}
