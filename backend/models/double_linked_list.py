@@ -67,6 +67,6 @@ class DoubleLinkedList:
         values = []
         current = self.tail
         while current is not None:
-            values.append(current.values)
+            values.append(current.value)
             current = current.prev
         return values

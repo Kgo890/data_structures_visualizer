@@ -25,7 +25,7 @@ async def insert_list_from_tail(item: LinkedListItem):
 
 @router.delete("/")
 async def deleting_from_linked_list(value: int):
-    if not double_linked_list.search(value):
+    if double_linked_list.search(value) == -1:
         return {'error': f'{value} not found in the linked list'}
     double_linked_list.delete(value)
     return {'message': f'The {value} has been deleted from the linked list', 'current': double_linked_list.traverse()}
@@ -54,3 +54,4 @@ async def traversing_the_double_linked_list():
 @router.get('/reverse-traverse')
 async def traversing_the_double_linked_list_reverse():
     return {'message': double_linked_list.reverse_traverse()}
+
