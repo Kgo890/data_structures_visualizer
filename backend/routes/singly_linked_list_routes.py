@@ -25,7 +25,7 @@ async def insert_list_from_tail(item: LinkedListItem):
 
 @router.delete("/")
 async def deleting_from_linked_list(value: int):
-    if not singly_linked_list.search(value):
+    if singly_linked_list.search(value) == -1:
         return {'error': f'{value} not found in the linked list'}
     singly_linked_list.delete(value)
     return {'message': f'The {value} has been deleted from the linked list', 'current': singly_linked_list.traverse()}

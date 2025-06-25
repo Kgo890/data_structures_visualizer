@@ -19,7 +19,7 @@ class SinglyLinkedList:
             self.head = new_node
             return
         current = self.head
-        while current is not None:
+        while current.next is not None:
             current = current.next
         current.next = new_node
 
@@ -47,12 +47,12 @@ class SinglyLinkedList:
             else:
                 current = current.next
                 index += 1
-        return False
+        return -1
 
     def traverse(self):
         values = []
         current = self.head
         while current is not None:
-            values.append(current.values)
+            values.append(current.value)
             current = current.next
         return values

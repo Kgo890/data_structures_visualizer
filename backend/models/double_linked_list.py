@@ -53,7 +53,7 @@ class DoubleLinkedList:
             else:
                 current = current.next
                 index += 1
-        return False
+        return -1
 
     def traverse(self):
         values = []
