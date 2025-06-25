@@ -40,11 +40,13 @@ class SinglyLinkedList:
 
     def search(self, item):
         current = self.head
+        index = 0
         while current is not None:
             if current.value == item:
-                return True
+                return index
             else:
                 current = current.next
+                index += 1
         return False
 
     def traverse(self):

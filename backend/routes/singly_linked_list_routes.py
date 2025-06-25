@@ -32,10 +32,18 @@ async def deleting_from_linked_list(value: int):
 
 
 @router.get('/search')
-async def searching_the_linked_list(value: int):
-    if singly_linked_list.search(value) == -1:
-        return {'error': f'{value} was not found in the linked list'}
-    return {'message': f'The {value} has been found in the linked list'}
+async def searching_the_singly_linked_list(value: int):
+    index = singly_linked_list.search(value)
+    if index == -1:
+        return {
+            'found': False,
+            'message': f'{value} was not found in the linked list'
+        }
+    return {
+        'found': True,
+        'index': index,
+        'message': f' Value {value} found at index {index} in the singly linked list'
+    }
 
 
 @router.get('/traverse')

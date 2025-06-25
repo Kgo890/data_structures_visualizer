@@ -18,9 +18,17 @@ async def insert_to_binary_tree(item: BinaryTreeItem):
 
 @router.get("/search")
 async def search_in_binary_tree(value: int):
-    if not binary_tree.search(value):
-        return {'error': f'{value} was not found in the binary tree'}
-    return {'message': f'The {value} has been found in the binary tree'}
+    depth = binary_tree.search(value)
+    if depth == -1:
+        return {
+            "found": False,
+            "message": f"Value {value} not found in the binary tree"
+        }
+    return {
+        "found": True,
+        "depth": depth,
+        "message": f"Value {value} found at depth {depth} in the binary tree"
+    }
 
 
 @router.get('/in_order-traverse')

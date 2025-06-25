@@ -31,15 +31,17 @@ class BinaryTree:
                         current = current.right
 
     def search(self, value):
-        current = self.root
-        while current is not None:
-            if current.value == value:
-                return True
-            elif current.value < value:
-                current = current.left
-            else:
-                current = current.right
-        return False
+        return self._search(self.root, value, 0)
+
+    def _search(self, node, value, depth):
+        if node is None:
+            return -1
+        if node.value == value:
+            return depth
+        elif value < node.value:
+            return self._search(node.left, value, depth + 1)
+        else:
+            return self._search(node.right, value, depth + 1)
 
     def in_order_traverse(self):
         nums = []
