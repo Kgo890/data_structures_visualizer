@@ -15,7 +15,7 @@ export default function Home() {
               marginBottom={3}
               marginTop={5}
             >
-              Top {category.name} models
+              {category.name} models
             </Typography>
             <Grid container spacing={5}>
               {category.models.map((model) => (
