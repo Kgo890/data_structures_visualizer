@@ -36,6 +36,16 @@ async def is_queue_empty():
     return {'message': queue.is_empty()}
 
 
-@router.get('/')
+@router.get('/get-items')
 async def get_queue():
     return {'message': queue.items}
+
+
+@router.get('/size')
+async def get_size():
+    return {'message': queue.size()}
+
+
+@router.get('/clear')
+async def reset_queue():
+    return {'message': queue.reset()}

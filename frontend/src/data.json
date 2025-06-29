@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "name": "Stack and Queue",
+    "models": [
+      {
+        "id": 1,
+        "name": "Stack",
+        "description": "A linear data structure where elements follow Last-In-First-Out (LIFO) order.",
+        "rating": 2,
+        "image": "https://tcproduction.blob.core.windows.net/media/%7B240f8b72-1159-4fd3-a150-0a837f50ba4a%7D.2573758641_297d6d19fa_o.jpg",
+        "route": "/stack"
+      },
+      {
+        "id": 2,
+        "name": "Queue",
+        "description": "A linear data structure where elements follow First-In-First-Out (FIFO) order.",
+        "rating": 2,
+        "image": "https://d2ru2mvuh5wx24.cloudfront.net/avtivity_bootstrap/1241/flight_of_angels_3__1920x864.jpg",
+        "route": "/queue"
+      }
+    ]
+  },
+
+  {
+    "id": 2,
+    "name": "Linked List",
+    "models": [
+      {
+        "id": 3,
+        "name": "singly linked list",
+        "description": "A linear collection of nodes where each node points to the next.",
+        "rating": 3,
+        "image": "https://assets.simpleviewcms.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/lasvegas/strip_b86ddbea-3add-4995-b449-ac85d700b027.jpg",
+        "route": "/singly-linked-list"
+      },
+      {
+        "id": 4,
+        "name": "Double Linked List",
+        "description": "A linked list where each node points to both next and previous nodes",
+        "rating": 3,
+        "image": "https://s3.amazonaws.com/virginhotelslv.com/content/uploads/2021/04/Website-Hero-Images-Mohegan-Sun-B-1300x420-1.jpg",
+        "route": "/doubly-linked-list"
+      }
+    ]
+  },
+
+  {
+    "id": 3,
+    "name": "Sorting Algorithms",
+    "models": [
+      {
+        "id": 5,
+        "name": "Bubble Sort",
+        "description": "Repeatedly steps through the list, compares adjacent items, and swaps them if they are in the wrong order.",
+        "rating": 4,
+        "image": "https://tcproduction.blob.core.windows.net/media/%7B240f8b72-1159-4fd3-a150-0a837f50ba4a%7D.2573758641_297d6d19fa_o.jpg",
+        "route": "/bubble-sort"
+      },
+      {
+        "id": 6,
+        "name": "Selection Sort",
+        "description": "Selects the smallest element from the unsorted part and moves it to the sorted part one at a time.",
+        "rating": 3.5,
+        "image": "https://d2ru2mvuh5wx24.cloudfront.net/avtivity_bootstrap/1241/flight_of_angels_3__1920x864.jpg",
+        "route": "/selection-sort"
+      },
+      {
+        "id": 7,
+        "name": "Insertion Sort",
+        "description": "Builds the sorted array one item at a time by inserting elements into their correct position.",
+        "rating": 4.5,
+        "image": "https://www.niagarafallsstatepark.com/~/media/parks/niagara-falls/attractions-and-tours/illumination/niagarafalls-illumination-header-desktop.jpg?h=500&w=1500&la=en&hash=123E6D5F1744FBCC74EC36570E77872608D24891g",
+        "route": "/insertion-sort"
+      },
+      {
+        "id": 8,
+        "name": "Merge Sort",
+        "description": "A divide-and-conquer algorithm that splits the array, sorts the halves, then merges them back.",
+        "rating": 4.5,
+        "image": "https://tcproduction.blob.core.windows.net/media/%7B240f8b72-1159-4fd3-a150-0a837f50ba4a%7D.2573758641_297d6d19fa_o.jpg",
+        "route": "/merge-sort"
+      },
+
+      {
+        "id": 9,
+        "name": "Quick Sort",
+        "description": "Uses a pivot to partition the array into smaller sub-arrays and recursively sorts them.",
+        "rating": 4.5,
+        "image": "https://tcproduction.blob.core.windows.net/media/%7B240f8b72-1159-4fd3-a150-0a837f50ba4a%7D.2573758641_297d6d19fa_o.jpg",
+        "route": "/quick-sort"
+      }
+    ]
+  },
+
+  {
+    "id": 4,
+    "name": "Trees",
+    "models": [
+      {
+        "id": 10,
+        "name": "Binary Tree",
+        "description": "A tree structure where each node has up to two children.",
+        "rating": 4,
+        "image": "https://tcproduction.blob.core.windows.net/media/%7B240f8b72-1159-4fd3-a150-0a837f50ba4a%7D.2573758641_297d6d19fa_o.jpg",
+        "route": "/binary-tree"
+      }
+    ]
+  }
+]

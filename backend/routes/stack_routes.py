@@ -36,6 +36,16 @@ async def is_stack_empty():
     return {'message': stack.is_empty()}
 
 
-@router.get('/')
+@router.get('/get-items')
 async def get_stack():
     return {'message': stack.items}
+
+
+@router.get("/clear")
+async def reset_stack():
+    return {'message': stack.reset()}
+
+
+@router.get('/size')
+async def get_size():
+    return {'message': stack.size()}
