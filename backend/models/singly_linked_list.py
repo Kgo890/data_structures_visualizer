@@ -23,20 +23,28 @@ class SinglyLinkedList:
             current = current.next
         current.next = new_node
 
-    def delete(self, item):
-        current = self.head
-        prev = None
+    def delete_from_front(self):
+        if self.head is None:
+            return None
+        value = self.head.value
+        self.head = self.head.next
+        return value
 
-        while current is not None:
-            if current.value == item:
-                if prev is not None:
-                    prev.next = current.next
-                else:
-                    self.head = current.next
-                return True
-            prev = current
+    def delete_from_back(self):
+        if self.head is None:
+            return None
+        if self.head.next is None:
+            value = self.head.value
+            self.head = None
+            return value
+
+        current = self.head
+        while current.next.next:
             current = current.next
-        return False
+
+        value = current.next.value
+        current.next = None
+        return value
 
     def search(self, item):
         current = self.head
@@ -56,6 +64,25 @@ class SinglyLinkedList:
             values.append(current.value)
             current = current.next
         return values
+
+    def reverse(self):
+        prev = None
+        current = self.head
+        steps = []
+
+        while current is not None:
+            next_node = current.next
+            steps.append({
+                'current': current.value,
+                'next': next_node.value if next_node else None,
+                'prev': prev.value if prev else None
+            })
+            current.next = prev
+            prev = current
+            current = next_node
+
+        self.head = prev
+        return steps
 
     def reset(self):
         self.head = None
