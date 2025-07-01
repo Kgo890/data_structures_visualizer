@@ -20,7 +20,7 @@ async def dequeue_from_queue():
     if queue.is_empty():
         return {'error': 'The queue is empty'}
     value = queue.dequeue()
-    return {'message': f'The {value} has been dequeue from the queue'}
+    return {'message': f'The {value} removed from the head of the queue'}
 
 
 @router.get('/peek')
