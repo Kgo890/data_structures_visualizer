@@ -49,3 +49,8 @@ async def searching_the_singly_linked_list(value: int):
 @router.get('/traverse')
 async def traversing_the_single_linked_list():
     return {'message': singly_linked_list.traverse()}
+
+
+@router.get('/clear')
+async def reset():
+    return {'message': singly_linked_list.reset()}

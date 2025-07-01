@@ -56,3 +56,6 @@ class SinglyLinkedList:
             values.append(current.value)
             current = current.next
         return values
+
+    def reset(self):
+        self.head = None
