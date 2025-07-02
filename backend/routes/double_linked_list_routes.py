@@ -23,12 +23,26 @@ async def insert_list_from_tail(item: LinkedListItem):
             'current': double_linked_list.traverse()}
 
 
-@router.delete("/")
-async def deleting_from_linked_list(value: int):
-    if double_linked_list.search(value) == -1:
-        return {'error': f'{value} not found in the linked list'}
-    double_linked_list.delete(value)
-    return {'message': f'The {value} has been deleted from the linked list', 'current': double_linked_list.traverse()}
+@router.delete("/delete-back")
+async def delete_back():
+    value = double_linked_list.delete_from_back()
+    if value is None:
+        return {'error': 'List is already empty'}
+    return {
+        'message': f'Delete: {value} from back',
+        'current': double_linked_list.traverse()
+    }
+
+
+@router.delete("/delete-front")
+async def delete_front():
+    value = double_linked_list.delete_from_front()
+    if value is None:
+        return {'error': 'List is already empty'}
+    return {
+        'message': f'Delete: {value} from front',
+        'current': double_linked_list.traverse()
+    }
 
 
 @router.get('/search')
@@ -55,3 +69,17 @@ async def traversing_the_double_linked_list():
 async def traversing_the_double_linked_list_reverse():
     return {'message': double_linked_list.reverse_traverse()}
 
+
+@router.get('/reverse')
+async def reverse_linked_list():
+    steps = double_linked_list.reverse()
+    return {
+        'message': 'Reversed the linked list',
+        'steps': steps,
+        'current': double_linked_list.traverse()
+    }
+
+
+@router.get('/clear')
+async def reset():
+    return {'message': double_linked_list.reset()}

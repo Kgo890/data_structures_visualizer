@@ -28,21 +28,27 @@ class DoubleLinkedList:
             new_node.prev = self.tail
             self.tail = new_node
 
-    def delete(self, value):
-        current = self.head
-        while current is not None:
-            if current.value == value:
-                if current.prev is not None:
-                    current.prev.next = current.next
-                else:
-                    self.head = current.next
-                if current.next is not None:
-                    current.next.prev = current.prev
-                else:
-                    self.tail = current.prev
-                return True
-            current = current.next
-        return False
+    def delete_from_front(self):
+        if self.head is None:
+            return None
+        value = self.head.value
+        if self.head == self.tail:
+            self.head = self.tail = None
+        else:
+            self.head = self.head.next
+            self.head.prev = None
+        return value
+
+    def delete_from_back(self):
+        if self.tail is None:
+            return None
+        value = self.tail.value
+        if self.head == self.tail:
+            self.head = self.tail = None
+        else:
+            self.tail = self.tail.prev
+            self.tail.next = None
+        return value
 
     def search(self, item):
         current = self.head
@@ -70,3 +76,18 @@ class DoubleLinkedList:
             values.append(current.value)
             current = current.prev
         return values
+
+    def reset(self):
+        self.head = None
+        self.tail = None
+
+    def reverse(self):
+        current = self.head
+        prev_node = None
+        while current is not None:
+            next_node = current.next
+            current.next = prev_node
+            current.prev = next_node
+            prev_node = current
+            current = next_node
+        self.head, self.tail = self.tail, self.head
