@@ -40,7 +40,7 @@
         "description": "A linked list where each node points to both next and previous nodes",
         "rating": 3,
         "image": "https://s3.amazonaws.com/virginhotelslv.com/content/uploads/2021/04/Website-Hero-Images-Mohegan-Sun-B-1300x420-1.jpg",
-        "route": "/doubly-linked-list"
+        "route": "/double-linked-list"
       }
     ]
   },

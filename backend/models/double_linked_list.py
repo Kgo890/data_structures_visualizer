@@ -84,10 +84,23 @@ class DoubleLinkedList:
     def reverse(self):
         current = self.head
         prev_node = None
+        steps = []
+
         while current is not None:
             next_node = current.next
+
+            steps.append({
+                "current": current.value,
+                "next": next_node.value if next_node else None,
+                "prev": prev_node.value if prev_node else None,
+            })
+
             current.next = prev_node
             current.prev = next_node
+
             prev_node = current
             current = next_node
+
         self.head, self.tail = self.tail, self.head
+        return steps
+
