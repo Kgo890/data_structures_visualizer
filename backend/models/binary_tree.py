@@ -162,3 +162,46 @@ class BinaryTree:
             else:
                 parent = current
                 current = current.right
+
+    def reset(self):
+        self.root = None
+
+    def serialize(self):
+        def node_to_dict(node):
+            if node is None:
+                return None
+            return {
+                "value": node.value,
+                "left": node_to_dict(node.left),
+                "right": node_to_dict(node.right)
+            }
+        return node_to_dict(self.root)
+
+    def count_leaf_nodes(self):
+        def count(node):
+            if node is None:
+                return 0
+            if node.left is None and node.right is None:
+                return 1
+            return count(node.left) + count(node.right)
+
+        return count(self.root)
+
+    def is_balanced(self):
+        def check(node):
+            if node is None:
+                return 0, True
+            left_height, left_balanced = check(node.left)
+            right_height, right_balanced = check(node.right)
+            height = 1 + max(left_height, right_height)
+            balanced = (
+                    abs(left_height - right_height) <= 1
+                    and left_balanced
+                    and right_balanced
+            )
+            return height, balanced
+
+        _, balanced = check(self.root)
+        return balanced
+
+

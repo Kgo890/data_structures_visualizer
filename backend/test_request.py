@@ -175,25 +175,25 @@ def test_binary_tree():
     print("\n--- Testing Binary Search Tree ---")
 
     # Insert values individually
-    r1 = httpx.post(f"{base_url}/binary-tree/", json={"value": 50})
+    r1 = httpx.post(f"{base_url}/binary-tree/insert", json={"value": 50})
     print_response(r1)
 
-    r2 = httpx.post(f"{base_url}/binary-tree/", json={"value": 30})
+    r2 = httpx.post(f"{base_url}/binary-tree/insert", json={"value": 30})
     print_response(r2)
 
-    r3 = httpx.post(f"{base_url}/binary-tree/", json={"value": 70})
+    r3 = httpx.post(f"{base_url}/binary-tree/insert", json={"value": 70})
     print_response(r3)
 
-    r4 = httpx.post(f"{base_url}/binary-tree/", json={"value": 20})
+    r4 = httpx.post(f"{base_url}/binary-tree/insert", json={"value": 20})
     print_response(r4)
 
-    r5 = httpx.post(f"{base_url}/binary-tree/", json={"value": 40})
+    r5 = httpx.post(f"{base_url}/binary-tree/insert", json={"value": 40})
     print_response(r5)
 
-    r6 = httpx.post(f"{base_url}/binary-tree/", json={"value": 60})
+    r6 = httpx.post(f"{base_url}/binary-tree/insert", json={"value": 60})
     print_response(r6)
 
-    r7 = httpx.post(f"{base_url}/binary-tree/", json={"value": 80})
+    r7 = httpx.post(f"{base_url}/binary-tree/insert", json={"value": 80})
     print_response(r7)
 
     # Search for an existing and a non-existing value
