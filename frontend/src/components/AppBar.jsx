@@ -69,15 +69,6 @@ export default function SearchAppBar({ searchQuery, setSearchQuery }) {
   const drawerItems = [
     { text: "Home", route: "/" },
     { text: "Stack", route: "/stack" },
-    { text: "Queue", route: "/queue" },
-    { text: "Singly Linked List", route: "/singly-linked-list" },
-    { text: "Double Linked List", route: "/double-linked-list" },
-    { text: "Binary Tree", route: "/binary-tree" },
-    { text: "Bubble Sort", route: "/bubble-sort" },
-    { text: "Selection Sort", route: "/selection-sort" },
-    { text: "Insertion Sort", route: "/insertion-sort" },
-    { text: "Merge Sort", route: "/merge-sort" },
-    { text: "Quick Sort", route: "/quick-sort" },
   ];
 
   return (

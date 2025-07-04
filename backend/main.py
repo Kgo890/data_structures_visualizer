@@ -3,11 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from backend.routes import (
     stack_routes,
-    queue_routes,
-    singly_linked_list_routes,
-    sorting_routes,
-    binary_tree_routes,
-    double_linked_list_routes
 )
 
 app = FastAPI(
@@ -26,8 +21,4 @@ app.add_middleware(
 
 
 app.include_router(stack_routes.router)
-app.include_router(queue_routes.router)
-app.include_router(sorting_routes.router)
-app.include_router(singly_linked_list_routes.router)
-app.include_router(double_linked_list_routes.router)
-app.include_router(binary_tree_routes.router)
+
