@@ -40,7 +40,15 @@ export default function Card({ model }) {
     <Grid item xs={12} sm={6} md={4} lg={3} onClick={handleClick} style={{ cursor: "pointer" }}>
       <ThemeProvider theme={theme}>
         <Paper elevation={3} className="paper">
-          <img src={model.image} alt={model.name} className="img" />
+          <img
+            src={model.image}
+            alt={model.name}
+            className="img"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "/assets/default.png"; // 👈 Add a default image in your assets folder
+            }}
+          />
           <Box sx={{ paddingX: 1, paddingY: 2 }}>
             <Typography variant="subtitle1" component="h2" gutterBottom>
               {model.name}
