@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body
 from backend.models.binary_tree import BinaryTree
 from backend.schemas.binary_tree_schema import BinaryTreeItem
 
-router = APIRouter(
+binary_tree_router = APIRouter(
     prefix="/binary-tree",
     tags=["BinaryTree"]
 )
@@ -10,7 +10,7 @@ router = APIRouter(
 binary_tree = BinaryTree()
 
 
-@router.post("/insert")
+@binary_tree_router.post("/insert")
 async def insert_to_binary_tree(item: BinaryTreeItem):
     binary_tree.insert(item.value)
     return {
@@ -19,7 +19,7 @@ async def insert_to_binary_tree(item: BinaryTreeItem):
     }
 
 
-@router.get("/search")
+@binary_tree_router.get("/search")
 async def search_in_binary_tree(value: int):
     depth = binary_tree.search(value)
     if depth == -1:
@@ -34,32 +34,32 @@ async def search_in_binary_tree(value: int):
     }
 
 
-@router.get("/in_order-traverse")
+@binary_tree_router.get("/in_order-traverse")
 async def traversing_inorder():
     steps = binary_tree.in_order_traverse()
     return {"steps": steps, "current": steps}
 
 
-@router.get("/pre_order-traverse")
+@binary_tree_router.get("/pre_order-traverse")
 async def traversing_pre_order():
     steps = binary_tree.pre_order_traverse()
     return {"steps": steps, "current": steps}
 
 
-@router.get("/post_order-traverse")
+@binary_tree_router.get("/post_order-traverse")
 async def traversing_post_order():
     steps = binary_tree.post_order_traverse()
     return {"steps": steps, "current": steps}
 
 
-@router.get("/height")
+@binary_tree_router.get("/height")
 async def height_of_binary_tree():
     return {
         'height': binary_tree.height()
     }
 
 
-@router.delete("/")
+@binary_tree_router.delete("/")
 async def delete_from_binary_tree(value: int):
     if binary_tree.search(value) == -1:
         return {'error': f'{value} not found in the binary tree'}
@@ -70,27 +70,27 @@ async def delete_from_binary_tree(value: int):
     }
 
 
-@router.get("/clear")
+@binary_tree_router.get("/clear")
 async def reset():
     binary_tree.reset()
     return {'message': 'Binary tree has been reset'}
 
 
-@router.get("/")
+@binary_tree_router.get("/")
 async def get_current_tree():
     return {"message": binary_tree.in_order_traverse()}
 
 
-@router.get("/tree-structure")
+@binary_tree_router.get("/tree-structure")
 async def get_tree_structure():
     return binary_tree.serialize()
 
 
-@router.get("/is-balanced")
+@binary_tree_router.get("/is-balanced")
 async def check_if_balanced():
     return {"balanced": binary_tree.is_balanced()}
 
 
-@router.get("/leaf-count")
+@binary_tree_router.get("/leaf-count")
 async def get_leaf_count():
     return {"leaf_count": binary_tree.count_leaf_nodes()}

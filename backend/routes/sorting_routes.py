@@ -2,13 +2,13 @@ from backend.models.sorting import selection_sort, insertion_sort, quick_sort, m
 from fastapi import APIRouter
 from backend.schemas.sorting_schema import SortItem
 
-router = APIRouter(
+sorting_router = APIRouter(
     prefix="/sort",
     tags=["Sort"]
 )
 
 
-@router.post("/")
+@sorting_router.post("/")
 async def sorting_algorithm(item: SortItem):
     if item.algorithm == "selection":
         steps = selection_sort(item.value)

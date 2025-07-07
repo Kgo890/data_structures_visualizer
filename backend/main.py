@@ -1,20 +1,18 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.routes import (
-    stack_routes,
-    queue_routes,
-    singly_linked_list_routes,
-    sorting_routes,
-    binary_tree_routes,
-    double_linked_list_routes
-)
+from backend.routes.stack_routes import stack_router
+from backend.routes.queue_routes import queue_router
+from backend.routes.singly_linked_list_routes import singly_linked_list_router
+from backend.routes.double_linked_list_routes import double_linked_list_router
+from backend.routes.binary_tree_routes import binary_tree_router
+from backend.routes.sorting_routes import sorting_router
+
 
 app = FastAPI(
     title="Data Structures Visualizer API",
     version='1.0.0'
 )
-
 
 app.add_middleware(
     CORSMiddleware,
@@ -25,9 +23,9 @@ app.add_middleware(
 )
 
 
-app.include_router(stack_routes.router)
-app.include_router(queue_routes.router)
-app.include_router(sorting_routes.router)
-app.include_router(singly_linked_list_routes.router)
-app.include_router(double_linked_list_routes.router)
-app.include_router(binary_tree_routes.router)
+app.include_router(stack_router)
+app.include_router(queue_router)
+app.include_router(sorting_router)
+app.include_router(singly_linked_list_router)
+app.include_router(double_linked_list_router)
+app.include_router(binary_tree_router)
