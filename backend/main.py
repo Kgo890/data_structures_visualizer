@@ -8,6 +8,8 @@ from backend.routes.double_linked_list_routes import double_linked_list_router
 from backend.routes.binary_tree_routes import binary_tree_router
 from backend.routes.sorting_routes import sorting_router
 from backend.routes.red_black_routes import red_black_tree_router
+from backend.routes.hash_map_routes import hash_map_router
+from backend.routes.tries_routes import tries_router
 
 app = FastAPI(
     title="Data Structures Visualizer API",
@@ -35,3 +37,7 @@ app.include_router(double_linked_list_router)
 app.include_router(binary_tree_router)
 
 app.include_router(red_black_tree_router)
+
+app.include_router(hash_map_router)
+
+app.include_router(tries_router)

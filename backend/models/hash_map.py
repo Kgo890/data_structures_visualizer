@@ -62,5 +62,21 @@ class HashMap:
                 result.append(KeyValuePair(key=item[0], value=item[1]))
         return result
 
+    def search(self, key):
+        index = self.key_to_index(key)
+        original_index = index
+        first_iteration = True
+        not_found = -1
+
+        while self.hashmap[index] is not None:
+            if self.hashmap[index][0] == key:
+                return index
+            index = (index + 1) % len(self.hashmap)
+            if not first_iteration and index == original_index:
+                break
+            first_iteration = False
+
+        return not_found
+
     def reset(self):
         self.hashmap = [None for _ in range(len(self.hashmap))]
