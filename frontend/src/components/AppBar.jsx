@@ -15,7 +15,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { useNavigate } from "react-router-dom";
 
-// Styling for search box
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -57,7 +56,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-// Component
+
 export default function SearchAppBar({ searchQuery, setSearchQuery }) {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const navigate = useNavigate();
