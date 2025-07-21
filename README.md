@@ -25,7 +25,7 @@ Features:
 - Accordion UI 
   - Clean and categorised layout so that the user can navigate the models with ease 
 
-Teah Stack:
+Tech Stack:
 - Front End
   - React.js with Vite for development 
   - Material Ui for the UI
