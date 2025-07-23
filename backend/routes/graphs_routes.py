@@ -1,6 +1,6 @@
 from backend.models.graphs import Graph
 from fastapi import APIRouter
-from backend.schemas.graph_schema import NodeItem,EdgeItem
+from backend.schemas.graph_schema import NodeItem, EdgeItem
 
 graphs_router = APIRouter(
     prefix="/graphs",
@@ -20,7 +20,7 @@ async def adding_nodes_to_graphs(item: NodeItem):
 
 
 @graphs_router.post("/add_edge")
-async def adding_edge_to_graphs(item: EdgeItem ):
+async def adding_edge_to_graphs(item: EdgeItem):
     graphs.add_edge(item.first_node, item.second_node)
     return {
         'message': f' a edge was added for {item.first_node} and {item.second_node} in the graph',
@@ -38,13 +38,31 @@ async def getting_unconnected_vertices():
 
 @graphs_router.get("/search_node")
 async def searching_node(item: NodeItem):
-    result = graphs.search(item.value)
+    result = graphs.search(item.node)
     if not result:
         return {
-            'message': f'{item.value} is not in your graph',
+            'message': f'{item.node} is not in your graph',
         }
     return {
-        'message': f'{item.value} is in your graph',
+        'message': f'{item.node} is in your graph',
+    }
+
+
+@graphs_router.get("/BFS")
+async def BFS(item: NodeItem):
+    result = graphs.breadth_first_search(item.node)
+    return {
+        "start node": item.node,
+        "message": result
+    }
+
+
+@graphs_router.get("/DFS")
+async def DFS(item: NodeItem):
+    result = graphs.depth_first_search(item.node)
+    return {
+        "start node": item.node,
+        "message": result
     }
 
 
