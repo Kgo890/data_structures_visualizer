@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import api from '../components/axios';
 import { Container, Grid, Typography, Box, Button, TextField } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -20,7 +20,7 @@ export default function SinglyLinkedListVisualizer() {
 
   async function getSinglyLinkedList() {
     try {
-      const response = await axios.get(BASE_URL + "/traverse");
+      const response = await api.get("/singly-linked-list/traverse");
       setLinkedList(response.data.message || []);
     } catch (error) {
       console.error("Error fetching list:", error);
@@ -30,7 +30,7 @@ export default function SinglyLinkedListVisualizer() {
 
   async function insertAtFront() {
     try {
-      await axios.post(BASE_URL + "/add-head", { value: input });
+      await api.post("/singly-linked-list/add-head", { value: input });
       setHistory((prev) => [...prev, `Insert: ${input} at front`]);
       setInput("");
       getSinglyLinkedList();
@@ -41,7 +41,7 @@ export default function SinglyLinkedListVisualizer() {
 
   async function insertAtBack() {
     try {
-      await axios.post(BASE_URL + "/add-tail", { value: input });
+      await api.post("/singly-linked-list/add-tail", { value: input });
       setHistory((prev) => [...prev, `Insert: ${input} at back`]);
       setInput("");
       getSinglyLinkedList();
@@ -52,7 +52,7 @@ export default function SinglyLinkedListVisualizer() {
 
   async function deleteInFront() {
     try {
-      const response = await axios.delete(BASE_URL + "/delete-front");
+      const response = await api.delete("/singly-linked-list/delete-front");
       const value = response.data.message;
       setHistory((prev) => [...prev, `Delete: ${value} from front`]);
       setInput("");
@@ -64,7 +64,7 @@ export default function SinglyLinkedListVisualizer() {
 
   async function deleteInBack() {
     try {
-      const response = await axios.delete(BASE_URL + "/delete-back");
+      const response = await api.delete("/singly-linked-list/delete-back");
       const value = response.data.message;
       setHistory((prev) => [...prev, `Delete: ${value} from back`]);
       setInput("");
@@ -76,7 +76,7 @@ export default function SinglyLinkedListVisualizer() {
 
  async function reverse_list() {
   try {
-    const response = await axios.get(BASE_URL + "/reverse");
+    const response = await api.get("/singly-linked-list/reverse");
     const { steps, current } = response.data;
 
     setReverseSteps(steps || []);
@@ -114,7 +114,7 @@ export default function SinglyLinkedListVisualizer() {
 
   async function reset() {
     try {
-      await axios.get(BASE_URL + "/clear");
+      await api.get("/singly-linked-list/clear");
       setInput("");
       setLinkedList([]);
       setStepIndex(null);

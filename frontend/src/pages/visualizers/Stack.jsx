@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import axios from 'axios'
+import api from '../components/axios';
 import { Container, Grid, Typography, Box, Button, TextField } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -14,7 +14,6 @@ export default function StackVisualizer() {
     const [peekIndex, setPeekIndex] = useState(null);
 
 
-    const BASE_URL = "http://localhost:8000/stack"
 
     useEffect(() => {
         getStack();
@@ -24,7 +23,7 @@ export default function StackVisualizer() {
 
     async function getStack() {
       try {
-        const response = await axios.get(BASE_URL);
+        const response = await api.get("/stack");
         setStack(response.data.message);
       } catch (error) {
         console.error("Error fetching stack:", error);
@@ -34,7 +33,7 @@ export default function StackVisualizer() {
 
     async function pushToStack() {
       try {
-        const response = await axios.post(BASE_URL, { value: input });
+        const response = await api.post("/stack", { value: input });
         setHistory((prev) => [...prev, `Push: ${input}`]);
 
         setStack((prev) => [...prev, { id: Date.now(), value: input }]);
@@ -47,7 +46,7 @@ export default function StackVisualizer() {
 
     async function popToStack() {
       try {
-        const response = await axios.delete(BASE_URL);
+        const response = await api.delete("/stack");
         const value = response.data.message;
         setHistory((prev) => [
           ...prev,
@@ -62,7 +61,7 @@ export default function StackVisualizer() {
 
     async function peek() {
       try {
-        const response = await axios.get(BASE_URL + '/peek');
+        const response = await api.get('/stack/peek');
         const value = response.data.message;
 
         setHistory((prev) => [
@@ -87,8 +86,8 @@ export default function StackVisualizer() {
 
     async function is_empty() {
       try {
-        const response = await axios.get(BASE_URL + "/empty");
-        const sizeResponse = await axios.get(BASE_URL + "/size");
+        const response = await api.get("/stack/empty");
+        const sizeResponse = await api.get("/stack/size");
         const isEmpty = response.data.message;
         const size = sizeResponse.data.message;
 
@@ -108,7 +107,7 @@ export default function StackVisualizer() {
 
     async function reset() {
       try {
-        const response = await axios.get(BASE_URL+"/clear");
+        const response = await api.get("/stack/clear");
         setInput("");
         setStack([]);
         setHistory((prev) => [

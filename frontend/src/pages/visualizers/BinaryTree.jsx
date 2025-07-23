@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from '../components/axios';
 import {
   Container,
   Typography,
@@ -16,7 +16,6 @@ export default function BinaryTreeVisualizer() {
   const [reverseSteps, setReverseSteps] = useState([]);
   const [stepIndex, setStepIndex] = useState(null);
 
-  const BASE_URL = "http://localhost:8000/binary-tree";
 
   useEffect(() => {
     fetchTreeStructure();
@@ -24,7 +23,7 @@ export default function BinaryTreeVisualizer() {
 
   async function fetchTreeStructure() {
     try {
-      const response = await axios.get(BASE_URL + "/tree-structure");
+      const response = await api.get("/binary-tree/tree-structure");
       setTreeStructure(response.data);
     } catch (error) {
       console.error("Error fetching tree structure:", error);
@@ -33,7 +32,7 @@ export default function BinaryTreeVisualizer() {
 
   async function insert() {
     try {
-      await axios.post(BASE_URL + "/insert", { value: input });
+      await api.post("/binary-tree/insert", { value: input });
       setHistory((prev) => [...prev, `Insert: ${input}`]);
       setInput("");
       fetchTreeStructure();
@@ -45,7 +44,7 @@ export default function BinaryTreeVisualizer() {
   async function deleteNode() {
     try {
       const value = parseInt(input);
-      await axios.delete(BASE_URL, { params: { value } });
+      await api.delete("/binary-tree", { params: { value } });
       setHistory((prev) => [...prev, `Delete: ${value}`]);
       setInput("");
       fetchTreeStructure();
@@ -56,7 +55,7 @@ export default function BinaryTreeVisualizer() {
 
   async function inOrder() {
     try {
-      const response = await axios.get(BASE_URL + "/in_order-traverse");
+      const response = await api.get("/binary-tree/in_order-traverse");
       const { steps } = response.data;
       animateTraversal(steps, "In-Order");
     } catch (error) {
@@ -66,7 +65,7 @@ export default function BinaryTreeVisualizer() {
 
   async function preOrder() {
     try {
-      const response = await axios.get(BASE_URL + "/pre_order-traverse");
+      const response = await api.get("/binary-tree/pre_order-traverse");
       const { steps } = response.data;
       animateTraversal(steps, "Pre-Order");
     } catch (error) {
@@ -76,7 +75,7 @@ export default function BinaryTreeVisualizer() {
 
   async function postOrder() {
     try {
-      const response = await axios.get(BASE_URL + "/post_order-traverse");
+      const response = await api.get("/binary-tree/post_order-traverse");
       const { steps } = response.data;
       animateTraversal(steps, "Post-Order");
     } catch (error) {
@@ -86,7 +85,7 @@ export default function BinaryTreeVisualizer() {
 
   async function checkBalance() {
     try {
-      const res = await axios.get(BASE_URL + "/is-balanced");
+      const res = await api.get("/binary-tree/is-balanced");
       setHistory((prev) => [...prev, `Balanced: ${res.data.balanced}`]);
     } catch (error) {
       console.error("Check balance failed:", error);
@@ -95,7 +94,7 @@ export default function BinaryTreeVisualizer() {
 
   async function getHeight() {
     try {
-      const res = await axios.get(BASE_URL + "/height");
+      const res = await api.get("/binary-tree/height");
       setHistory((prev) => [...prev, `Height: ${res.data.height}`]);
     } catch (error) {
       console.error("Get height failed:", error);
@@ -104,7 +103,7 @@ export default function BinaryTreeVisualizer() {
 
   async function getLeafCount() {
     try {
-      const res = await axios.get(BASE_URL + "/leaf-count");
+      const res = await api.get("/binary-tree/leaf-count");
       setHistory((prev) => [...prev, `Leaf Nodes: ${res.data.leaf_count}`]);
     } catch (error) {
       console.error("Get leaf count failed:", error);
@@ -113,7 +112,7 @@ export default function BinaryTreeVisualizer() {
 
   async function reset() {
     try {
-      await axios.get(BASE_URL + "/clear");
+      await api.get("/binary-tree/clear");
       setInput("");
       setStepIndex(null);
       setReverseSteps([]);

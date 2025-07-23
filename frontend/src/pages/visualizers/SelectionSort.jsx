@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import api from '../components/axios';
 import {
   Container,
   Typography,
@@ -18,8 +18,6 @@ export default function SelectionSortVisualizer() {
   const [playing, setPlaying] = useState(false);
   const [history, setHistory] = useState([]);
 
-  const BASE_URL = "http://localhost:8000/sort";
-
   function handleInputChange(e) {
     setInput(e.target.value);
   }
@@ -27,7 +25,7 @@ export default function SelectionSortVisualizer() {
   async function startSort() {
     try {
       const nums = input.split(",").map((n) => parseInt(n.trim()));
-      const response = await axios.post(BASE_URL, {
+      const response = await api.post("/sort", {
         algorithm: "selection",
         value: nums,
       });
@@ -42,7 +40,6 @@ export default function SelectionSortVisualizer() {
     }
   }
 
-  // Step through animation
   React.useEffect(() => {
     if (!playing || stepIndex >= steps.length) {
       setPlaying(false);

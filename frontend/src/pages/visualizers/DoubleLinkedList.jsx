@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import api from '../components/axios';
 import { Container, Grid, Typography, Box, Button, TextField } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -16,7 +16,6 @@ export default function DoubleLinkedListVisualizer() {
   const [reverseSteps, setReverseSteps] = useState([]);
   const [stepIndex, setStepIndex] = useState(null);
 
-  const BASE_URL = "http://localhost:8000/double-linked-list";
 
   useEffect(() => {
     getDoubleLinkedList();
@@ -24,7 +23,7 @@ export default function DoubleLinkedListVisualizer() {
 
   async function getDoubleLinkedList() {
     try {
-      const response = await axios.get(BASE_URL + "/forward-traverse");
+      const response = await api.get("/double-linked-list/forward-traverse");
       setLinkedList(response.data.message || []);
     } catch (error) {
       console.error("Error fetching list:", error);
@@ -34,7 +33,7 @@ export default function DoubleLinkedListVisualizer() {
 
   async function insertAtFront() {
     try {
-      await axios.post(BASE_URL + "/add-head", { value: input });
+      await api.post("/double-linked-list/add-head", { value: input });
       setHistory((prev) => [...prev, `Insert: ${input} at front`]);
       setInput("");
       getDoubleLinkedList();
@@ -45,7 +44,7 @@ export default function DoubleLinkedListVisualizer() {
 
   async function insertAtBack() {
     try {
-      await axios.post(BASE_URL + "/add-tail", { value: input });
+      await api.post("/double-linked-list/add-tail", { value: input });
       setHistory((prev) => [...prev, `Insert: ${input} at back`]);
       setInput("");
       getDoubleLinkedList();
@@ -56,7 +55,7 @@ export default function DoubleLinkedListVisualizer() {
 
   async function deleteInFront() {
     try {
-      const response = await axios.delete(BASE_URL + "/delete-front");
+      const response = await api.delete("/double-linked-list/delete-front");
       const value = response.data.message;
       setHistory((prev) => [...prev, `Delete: ${value} from front`]);
       setInput("");
@@ -68,7 +67,7 @@ export default function DoubleLinkedListVisualizer() {
 
   async function deleteInBack() {
     try {
-      const response = await axios.delete(BASE_URL + "/delete-back");
+      const response = await api.delete("/double-linked-list/delete-back");
       const value = response.data.message;
       setHistory((prev) => [...prev, `Delete: ${value} from back`]);
       setInput("");
@@ -80,7 +79,7 @@ export default function DoubleLinkedListVisualizer() {
 
   async function reverse_list() {
   try {
-    const response = await axios.get(BASE_URL + "/reverse");
+    const response = await api.get("/double-linked-list/reverse");
     const { steps, current } = response.data;
     setReverseSteps(steps || []);
 
@@ -114,7 +113,7 @@ export default function DoubleLinkedListVisualizer() {
 
   async function reset() {
     try {
-      await axios.get(BASE_URL + "/clear");
+      await api.get("/double-linked-list/clear");
       setInput("");
       setLinkedList([]);
       setStepIndex(null);
