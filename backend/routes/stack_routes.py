@@ -9,13 +9,13 @@ stack_router = APIRouter(
 stack = Stack()
 
 
-@stack_router.post("/")
+@stack_router.post("/push")
 async def push_to_stack(item: StackItem):
     stack.push(item.value)
     return {'message': f'{item.value} pushed to the stack'}
 
 
-@stack_router.delete("/")
+@stack_router.delete("/pop")
 async def pop_from_stack():
     if stack.is_empty():
         return {'error': 'The stack is empty'}

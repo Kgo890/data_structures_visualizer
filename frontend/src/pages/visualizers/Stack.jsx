@@ -23,7 +23,7 @@ export default function StackVisualizer() {
 
     async function getStack() {
       try {
-        const response = await api.get("/stack/get-item");
+        const response = await api.get("/stack/get-items");
         setStack(response.data.message);
       } catch (error) {
         console.error("Error fetching stack:", error);
@@ -33,7 +33,7 @@ export default function StackVisualizer() {
 
     async function pushToStack() {
       try {
-        const response = await api.post("/stack", { value: input });
+        const response = await api.post("/stack/push", { value: input });
         setHistory((prev) => [...prev, `Push: ${input}`]);
 
         setStack((prev) => [...prev, { id: Date.now(), value: input }]);
@@ -46,7 +46,7 @@ export default function StackVisualizer() {
 
     async function popToStack() {
       try {
-        const response = await api.delete("/stack");
+        const response = await api.delete("/stack/pop");
         const value = response.data.message;
         setHistory((prev) => [
           ...prev,
