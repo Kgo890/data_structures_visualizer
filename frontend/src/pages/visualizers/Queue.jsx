@@ -23,7 +23,7 @@ export default function QueueVisualizer() {
 
     async function getQueue() {
       try {
-        const response = await api.get("/queue");
+        const response = await api.get("/queue/get-item");
         setQueue(response.data.message);
       } catch (error) {
         console.error("Error fetching Queue:", error);
@@ -33,7 +33,7 @@ export default function QueueVisualizer() {
 
     async function enqueueToQueue() {
       try {
-        const response = await api.post("/queue", { value: input });
+        const response = await api.post("/queue/enqueue", { value: input });
         setHistory((prev) => [...prev, `Enqueue: ${input}`]);
 
         setQueue((prev) => [...prev, { id: Date.now(), value: input }]);
@@ -46,7 +46,7 @@ export default function QueueVisualizer() {
 
     async function dequeueFromQueue() {
       try {
-        const response = await api.delete("/queue");
+        const response = await api.delete("/queue/dequeue");
         const value = response.data.message;
         setHistory((prev) => [
           ...prev,

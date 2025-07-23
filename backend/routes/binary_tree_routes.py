@@ -59,7 +59,7 @@ async def height_of_binary_tree():
     }
 
 
-@binary_tree_router.delete("/")
+@binary_tree_router.delete("/delete")
 async def delete_from_binary_tree(value: int):
     if binary_tree.search(value) == -1:
         return {'error': f'{value} not found in the binary tree'}

@@ -9,13 +9,13 @@ queue_router = APIRouter(
 queue = Queue()
 
 
-@queue_router.post("/")
+@queue_router.post("/enqueue")
 async def enqueue_to_queue(item: QueueItem):
     queue.enqueue(item.value)
     return {'message': f'{item.value} enqueue to the queue'}
 
 
-@queue_router.delete("/")
+@queue_router.delete("/dequeue")
 async def dequeue_from_queue():
     if queue.is_empty():
         return {'error': 'The queue is empty'}

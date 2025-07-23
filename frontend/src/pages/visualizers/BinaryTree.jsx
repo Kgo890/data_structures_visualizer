@@ -44,7 +44,7 @@ export default function BinaryTreeVisualizer() {
   async function deleteNode() {
     try {
       const value = parseInt(input);
-      await api.delete("/binary-tree", { params: { value } });
+      await api.delete("/binary-tree/delete", { params: { value } });
       setHistory((prev) => [...prev, `Delete: ${value}`]);
       setInput("");
       fetchTreeStructure();
