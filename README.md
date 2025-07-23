@@ -38,8 +38,8 @@ Tech Stack:
   - Pydantic for data validation and schema modeling
   
 - Deployment 
-  - Netlify for Frontend 
-  - Local FastAPI Server for backend 
+  - Vercel for Frontend 
+  - Render FastAPI Server for backend 
 
 
 How it Works: 
@@ -58,7 +58,7 @@ How it Works:
 
 
 Live Demo: 
-- Full Demo App: https://data-structure-visualizer-demo.netlify.app/
+- Full Demo App: https://data-structures-visualizer-six.vercel.app/
 
 
 Motivation: 
