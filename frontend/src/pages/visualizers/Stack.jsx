@@ -23,7 +23,7 @@ export default function StackVisualizer() {
 
     async function getStack() {
       try {
-        const response = await api.get("/stack");
+        const response = await api.get("/stack/get-item");
         setStack(response.data.message);
       } catch (error) {
         console.error("Error fetching stack:", error);
