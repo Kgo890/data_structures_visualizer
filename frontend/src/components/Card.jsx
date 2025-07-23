@@ -46,7 +46,7 @@ export default function Card({ model }) {
             className="img"
             onError={(e) => {
               e.target.onerror = null;
-              e.target.src = "/assets/default.png"; // 👈 Add a default image in your assets folder
+              e.target.src = "/assets/default.png";
             }}
           />
           <Box sx={{ paddingX: 1, paddingY: 2 }}>

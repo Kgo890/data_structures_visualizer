@@ -23,7 +23,7 @@ export default function SearchAppBar({ onSearch }) {
   const handleChange = (event) => {
     const value = event.target.value;
     setQuery(value);
-    onSearch(value); // send query to parent
+    onSearch(value); 
   };
 
   return (
